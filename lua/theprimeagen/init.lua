@@ -29,11 +29,19 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+autocmd("BufWritePre", {
     pattern = "*",
-    command = [[%s/\s\+$//e]],
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
 })
+
+
+-- autocmd({"BufWritePre"}, {
+--     group = ThePrimeagenGroup,
+--     pattern = "*",
+--     command = [[%s/\s\+$//e]],
+-- })
 
 autocmd('BufEnter', {
     group = ThePrimeagenGroup,
